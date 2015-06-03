@@ -1,5 +1,5 @@
 #!/bin/bash
-alias rel='cp -f .bash_aliases ~/.bash_aliases && gnome-terminal && exit'
+alias rel='cp -f ~/_aliases/.bash_aliases ~/.bash_aliases && gnome-terminal && exit'
 
 docker() {
   if [ $1 == "bar" ]; then
