@@ -4,7 +4,7 @@ alias rel='cp -f ~/_aliases/.bash_aliases ~/.bash_aliases && gnome-terminal && e
 ###
 # apt-get
 #
-#alias apt=apt
+#alias apt=apt # native?
 
 # update && install
 alias update='sudo apt update '
@@ -16,32 +16,39 @@ alias upinst='sudo apt update && sudo apt install -y '
 #
 alias dkr='sudo docker'
 
-# containers
-alias lxc='dkr ps -a'
-alias rmc='dkr rm $(lxc -a -q)'
-
 # images
 alias img='dkr images'
 alias rmi='dkr rmi $(img -f dangling=true -q)'
 
+# containers
+alias lxc='dkr ps -a'
+alias rmc='dkr rm $(lxc -a -q)'
+
 # build and run
 bar() {
-  sudo docker build -t "$@" . && sudo docker -it --rm "$@"
+  dkr build -t "$@" . && dkr run -it --rm "$@" /bin/bash
 }
 alias bar=bar
 
-###
 # fig (docker-compose)
-#
 alias fig='sudo docker-compose'
+
+# machine
+alias machine='sudo docker-machine'
 
 ###
 # web
 #
 
+# firefox search
+ff() {
+  firefox -new-window --search "$@"
+}
+alias ff=ff
+
 # registry.hub.docker.com
 registry() {
-  firefox "https://registry.hub.docker.com/_/$@/"
+  firefox -new-window "https://registry.hub.docker.com/_/$@/"
 }
 alias registry=registry
 
@@ -51,12 +58,16 @@ github() {
 }
 alias github=github
 
-# firefox google search
-alias ff='firefox --search '
+alias bit='google-chrome https://bitbucket.org/cristhiano'
+
+# yahoo! webmail .br
+alias y-mail='google-chrome mail.yahoo.com.br'
 
 ###
 # system
 #
+
+alias google-chrome='google-chrome --new-window '
 
 # duplicate terminal
 alias d='gnome-terminal'
@@ -68,3 +79,10 @@ alias x='exit'
 
 # disk analyser
 alias disk='sudo baobab /'
+
+# workspace grid
+wrkspc_grid_sqrt() {
+  dconf write /org/compiz/profiles/unity/plugins/core/hsize "$@"
+  dconf write /org/compiz/profiles/unity/plugins/core/vsize "$@"
+}
+alias wrkspc-grid-sqrt=wrkspc_grid_sqrt
