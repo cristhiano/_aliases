@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # reload bash
 alias rel='cp -f ~/_aliases/.bash_aliases ~/.bash_aliases && gnome-terminal && exit'
 
@@ -88,7 +90,7 @@ wrkspc_grid_sqrt() {
 alias wrkspc-grid-sqrt=wrkspc_grid_sqrt
 
 # localhost
-PORTS=(3000 8000 8080)
-for port in "$PORTS"; do
-  alias l:"$port"="firefox -new-window localhost:$port"
+for port in 3000 8000 8080;
+do
+  alias "l:$port"="firefox -new-window localhost:$port"
 done
