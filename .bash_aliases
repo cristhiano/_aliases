@@ -86,3 +86,9 @@ wrkspc_grid_sqrt() {
   dconf write /org/compiz/profiles/unity/plugins/core/vsize "$@"
 }
 alias wrkspc-grid-sqrt=wrkspc_grid_sqrt
+
+# localhost
+PORTS=(3000 8000 8080)
+for port in "$PORTS"; do
+  alias l:"$port"="firefox -new-window localhost:$port"
+done
